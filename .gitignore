@@ -1,0 +1,6 @@
+# Manual files
+.idea/
+expts/
+todo.txt
+
+*.pyc
