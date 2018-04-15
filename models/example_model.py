@@ -4,7 +4,7 @@ import tensorflow as tf
 
 class ExampleModel(BaseModel):
     def __init__(self, config):
-        super(ExampleModel, self).__init__(config)
+        super().__init__(config)
         self.build_model()
         self.init_saver()
 

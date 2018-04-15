@@ -17,6 +17,7 @@ class BaseTrain:
 
     def train(self):
         for cur_epoch in range(self.model.current_epoch.eval(self.sess), self.config["num_epochs"]):
+            print("Start Epoch: {}".format(cur_epoch), flush=True)
             self.train_epoch()
             self.sess.run(self.model.inc_curr_epoch)
 
