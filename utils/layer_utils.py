@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def get_layer(layer_num, last_layer, layer_type, name=None, **kwargs):
+def get_layer(layer_num, last_layer, layer_type, training=None, name=None, **kwargs):
     if name is None:
         name = "Hidden{}-{}".format(layer_num, layer_type)
     if layer_type == "conv2d":
@@ -19,5 +19,9 @@ def get_layer(layer_num, last_layer, layer_type, name=None, **kwargs):
     elif layer_type == "reshape":
         shape = kwargs.pop("shape")
         return tf.reshape(last_layer, shape, name=name, **kwargs)
+    elif layer_type == "dropout":
+        assert training is not None
+        return tf.nn.dropout(last_layer, name=name, training=training, **kwargs)
     else:
         raise NotImplementedError
+    
