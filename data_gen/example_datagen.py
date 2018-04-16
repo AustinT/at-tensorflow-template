@@ -8,10 +8,10 @@ class X2Data(BaseDataGen):
         x = np.random.random((self.get_num_data(), 1))*2 - 1
         y = x**2
 
-        return x, y
+        return {"train": (x, y)}
 
-    def get_num_data(self):
+    def get_num_data(self, key=None):
         return 2000
 
-    def shuffle_data(self):
+    def shuffle_data(self, key=None):
         self.data = self.load_data()

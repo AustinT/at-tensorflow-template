@@ -24,7 +24,7 @@ class ExampleTrainer(BaseTrain):
         self.model.save(self.sess)
 
     def train_step(self):
-        batch_x, batch_y = next(self.data.next_batch(self.config["batch_size"]))
+        batch_x, batch_y = self.data.next_batch(self.config["batch_size"])
         feed_dict = {self.model.x: batch_x, self.model.y: batch_y, self.model.is_training: True}
         _, loss = self.sess.run([self.model.train_step, self.model.loss],
                                      feed_dict=feed_dict)

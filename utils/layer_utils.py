@@ -21,7 +21,14 @@ def get_layer(layer_num, last_layer, layer_type, training=None, name=None, **kwa
         return tf.reshape(last_layer, shape, name=name, **kwargs)
     elif layer_type == "dropout":
         assert training is not None
-        return tf.nn.dropout(last_layer, name=name, training=training, **kwargs)
+        return tf.layers.dropout(last_layer, name=name, training=training, **kwargs)
     else:
         raise NotImplementedError
-    
+
+
+def process_kwargs(layer_kwargs):
+    eval_list = "activation kernel_regularizer".split()
+
+    for kwarg in eval_list:
+        if kwarg in layer_kwargs:
+            layer_kwargs[kwarg] = eval(layer_kwargs[kwarg])
